@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/models/cases.dart';
+import 'package:frontend/models/Events.dart';
 import 'detailwidget.dart';
-import 'models/cases.dart';
 
-class CasesList extends StatelessWidget {
-  final List<Cases> cases;
-  const CasesList({super.key, required this.cases});
+class EventsList extends StatelessWidget {
+  final List<Events> events;
+  const EventsList({super.key, required this.events});
 
   @override
   Widget build(BuildContext context) {
     return
       ListView.builder(
-          itemCount: cases.length,
+          itemCount: events.length,
           itemBuilder: (BuildContext context, int index) {
             return
               Card(
@@ -20,13 +19,13 @@ class CasesList extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => DetailWidget(cases: cases[index],)),
+                            builder: (context) => DetailWidget(events: events[index],)),
                       );
                     },
                     child: ListTile(
                       leading: const Icon(Icons.person),
-                      title: Text(cases[index].name),
-                      subtitle: Text(cases[index].age.toString()),
+                      title: Text(events[index].name),
+                      subtitle: Text(events[index].location),
                     ),
                   )
               );

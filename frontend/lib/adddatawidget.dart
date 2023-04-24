@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/main.dart';
 import 'package:frontend/services/api_service.dart';
-import 'models/cases.dart';
+import 'models/Events.dart';
 
-enum Gender { male, female }
-enum Status { positive, dead, recovered }
+
 
 
 class AddDataWidget extends StatefulWidget {
@@ -20,14 +19,10 @@ class _AddDataWidgetState extends State<AddDataWidget> {
   final ApiService api = ApiService();
   final _addFormKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
-  String gender = 'male';
-  Gender _gender = Gender.male;
-  final _ageController = TextEditingController();
-  final _addressController = TextEditingController();
-  final _cityController = TextEditingController();
-  final _countryController = TextEditingController();
-  String status = 'positive';
-  Status _status = Status.positive;
+  final _locationController = TextEditingController();
+  final _imageUrlController = TextEditingController();
+  final _dateController = TextEditingController();
+  final _monthController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -67,49 +62,16 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                             ],
                           ),
                         ),
+
                         Container(
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
-                              const Text('Gender'),
-                              ListTile(
-                                title: const Text('Male'),
-                                leading: Radio(
-                                  value: Gender.male,
-                                  groupValue: _gender,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _gender = value!;
-                                      gender = 'male';
-                                    });
-                                  },
-                                ),
-                              ),
-                              ListTile(
-                                title: const Text('Female'),
-                                leading: Radio(
-                                  value: Gender.female,
-                                  groupValue: _gender,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _gender = value!;
-                                      gender = 'female';
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: Column(
-                            children: <Widget>[
-                              const Text('Age'),
+                              const Text('location'),
                               TextFormField(
-                                controller: _ageController,
+                                controller: _locationController,
                                 decoration: const InputDecoration(
-                                  hintText: 'Age',
+                                  hintText: 'location',
                                 ),
                                 keyboardType: TextInputType.number,
                                 validator: (value) {
@@ -127,11 +89,11 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
-                              const Text('Address'),
+                              const Text('image'),
                               TextFormField(
-                                controller: _addressController,
+                                controller: _imageUrlController,
                                 decoration: const InputDecoration(
-                                  hintText: 'Address',
+                                  hintText: 'image',
                                 ),
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -148,15 +110,15 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
-                              const Text('City'),
+                              const Text('date'),
                               TextFormField(
-                                controller: _cityController,
+                                controller: _dateController,
                                 decoration: const InputDecoration(
                                   hintText: 'City',
                                 ),
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Please enter city';
+                                    return 'Please enter date';
                                   }
                                   return null;
                                 },
@@ -169,15 +131,15 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
-                              const Text('Country'),
+                              const Text('month'),
                               TextFormField(
-                                controller: _countryController,
+                                controller: _monthController,
                                 decoration: const InputDecoration(
                                   hintText: 'Country',
                                 ),
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Please enter country';
+                                    return 'Please enter month';
                                   }
                                   return null;
                                 },
@@ -186,53 +148,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                             ],
                           ),
                         ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: Column(
-                            children: <Widget>[
-                              const Text('Status'),
-                              ListTile(
-                                title: const Text('Positive'),
-                                leading: Radio(
-                                  value: Status.positive,
-                                  groupValue: _status,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _status = value!;
-                                      status = 'positive';
-                                    });
-                                  },
-                                ),
-                              ),
-                              ListTile(
-                                title: const Text('Dead'),
-                                leading: Radio(
-                                  value: Status.dead,
-                                  groupValue: _status,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _status = value!;
-                                      status = 'dead';
-                                    });
-                                  },
-                                ),
-                              ),
-                              ListTile(
-                                title: const Text('Recovered'),
-                                leading: Radio(
-                                  value: Status.recovered,
-                                  groupValue: _status,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _status = value!;
-                                      status = 'recovered';
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+
                         Container(
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
@@ -241,7 +157,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                                 onPressed: () {
                                   if (_addFormKey.currentState!.validate()) {
                                     _addFormKey.currentState!.save();
-                                    api.createCase(Cases(name: _nameController.text, gender: gender, age: int.parse(_ageController.text), address: _addressController.text, city: _cityController.text, country: _countryController.text, status: status, updated: DateTime.now().toString()));
+                                    api.createCase(Events(name: _nameController.text,  location: _locationController.text, imageUrl: _imageUrlController.text, date: _dateController.text, month: _monthController.text, updated: DateTime.now().toString()));
 
                                     //Navigator.pop(context,(){setState(() {});});
                                     Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/'));

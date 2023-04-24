@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'editdatawidget.dart';
 import 'services/api_service.dart';
-import 'models/cases.dart';
+import 'models/Events.dart';
 
 class DetailWidget extends StatefulWidget {
-  const DetailWidget({Key? key, required this.cases}) : super(key: key);
+  const DetailWidget({Key? key, required this.events}) : super(key: key);
 
-  final Cases cases;
+  final Events events;
 
   @override
   State<DetailWidget> createState() => _DetailWidgetState();
@@ -39,7 +39,7 @@ class _DetailWidgetState extends State<DetailWidget> {
                             Text('Name:',
                                 style: TextStyle(
                                     color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.name,
+                            Text(widget.events.name,
                                 style: Theme.of(context).textTheme.headline6)
                           ],
                         ),
@@ -48,10 +48,10 @@ class _DetailWidgetState extends State<DetailWidget> {
                         margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                         child: Column(
                           children: <Widget>[
-                            Text('Gender:',
+                            Text('Location:',
                                 style: TextStyle(
                                     color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.gender,
+                            Text(widget.events.location,
                                 style: Theme.of(context).textTheme.headline6)
                           ],
                         ),
@@ -60,10 +60,10 @@ class _DetailWidgetState extends State<DetailWidget> {
                         margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                         child: Column(
                           children: <Widget>[
-                            Text('Age:',
+                            Text('image:',
                                 style: TextStyle(
                                     color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.age.toString(),
+                            Text(widget.events.imageUrl,
                                 style: Theme.of(context).textTheme.headline6)
                           ],
                         ),
@@ -72,10 +72,10 @@ class _DetailWidgetState extends State<DetailWidget> {
                         margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                         child: Column(
                           children: <Widget>[
-                            Text('Address:',
+                            Text('date:',
                                 style: TextStyle(
                                     color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.address,
+                            Text(widget.events.date,
                                 style: Theme.of(context).textTheme.headline6)
                           ],
                         ),
@@ -84,50 +84,17 @@ class _DetailWidgetState extends State<DetailWidget> {
                         margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                         child: Column(
                           children: <Widget>[
-                            Text('City:',
+                            Text('month:',
                                 style: TextStyle(
                                     color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.city,
+                            Text(widget.events.month,
                                 style: Theme.of(context).textTheme.headline6)
                           ],
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: Column(
-                          children: <Widget>[
-                            Text('Country:',
-                                style: TextStyle(
-                                    color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.country,
-                                style: Theme.of(context).textTheme.headline6)
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: Column(
-                          children: <Widget>[
-                            Text('Status:',
-                                style: TextStyle(
-                                    color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.status,
-                                style: Theme.of(context).textTheme.headline6)
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: Column(
-                          children: <Widget>[
-                            Text('Update Date:',
-                                style: TextStyle(
-                                    color: Colors.black.withOpacity(0.8))),
-                            Text(widget.cases.updated,
-                                style: Theme.of(context).textTheme.headline6)
-                          ],
-                        ),
-                      ),
+
+
+
                       IntrinsicWidth(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -136,7 +103,7 @@ class _DetailWidgetState extends State<DetailWidget> {
                               margin: const EdgeInsets.only(bottom: 10),
                               child: ElevatedButton(
                                 onPressed: () {
-                                  _navigateToEditScreen(context, widget.cases);
+                                  _navigateToEditScreen(context, widget.events);
                                 },
                                 child: const Text('Edit',
                                     style: TextStyle(color: Colors.white)),
@@ -159,10 +126,10 @@ class _DetailWidgetState extends State<DetailWidget> {
     );
   }
 
-  _navigateToEditScreen(BuildContext context, Cases cases) async {
+  _navigateToEditScreen(BuildContext context, Events events) async {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => EditDataWidget(cases: cases,)),
+      MaterialPageRoute(builder: (context) => EditDataWidget(events: events,)),
     );
   }
 
@@ -184,7 +151,7 @@ class _DetailWidgetState extends State<DetailWidget> {
             ElevatedButton(
               child: const Text('Yes'),
               onPressed: () {
-                api.deleteCase(widget.cases.id);
+                api.deleteCase(widget.events.id);
                 Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/'));
               },
             ),

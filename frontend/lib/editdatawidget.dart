@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/services/api_service.dart';
 import 'package:frontend/services/api_service.dart';
-import 'models/cases.dart';
+import 'models/Events.dart';
 
-enum Gender { male, female }
-enum Status { positive, dead, recovered }
 
 class EditDataWidget extends StatefulWidget {
-  const EditDataWidget({Key? key, required this.cases}) : super(key: key);
+  const EditDataWidget({Key? key, required this.events}) : super(key: key);
 
-  final Cases cases;
+  final Events events;
   @override
   State<EditDataWidget> createState() => _EditDataWidgetState();
 }
@@ -19,37 +17,19 @@ class _EditDataWidgetState extends State<EditDataWidget> {
   final _addFormKey = GlobalKey<FormState>();
   String id = '';
   final _nameController = TextEditingController();
-  String gender = 'male';
-  Gender _gender = Gender.male;
-  final _ageController = TextEditingController();
-  final _addressController = TextEditingController();
-  final _cityController = TextEditingController();
-  final _countryController = TextEditingController();
-  String status = 'positive';
-  Status _status = Status.positive;
-
+  final _locationController = TextEditingController();
+  final _imageUrlController = TextEditingController();
+  final _dateController = TextEditingController();
+  final _monthController = TextEditingController();
   @override
   void initState() {
-    id = widget.cases.id;
-    _nameController.text = widget.cases.name;
-    gender = widget.cases.gender;
-    if(widget.cases.gender == 'male') {
-      _gender = Gender.male;
-    } else {
-      _gender = Gender.female;
-    }
-    _ageController.text = widget.cases.age.toString();
-    _addressController.text = widget.cases.address;
-    _cityController.text = widget.cases.city;
-    _countryController.text = widget.cases.country;
-    status = widget.cases.status;
-    if(widget.cases.status == 'positive') {
-      _status = Status.positive;
-    } else if(widget.cases.status == 'dead') {
-      _status = Status.dead;
-    } else {
-      _status = Status.recovered;
-    }
+    id = widget.events.id;
+    _nameController.text = widget.events.name;
+    _locationController.text = widget.events.location;
+    _imageUrlController.text = widget.events.imageUrl;
+    _dateController.text = widget.events.date;
+    _monthController.text = widget.events.month;
+
     super.initState();
   }
 
@@ -91,54 +71,21 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                             ],
                           ),
                         ),
+
                         Container(
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
-                              const Text('Gender'),
-                              ListTile(
-                                title: const Text('Male'),
-                                leading: Radio(
-                                  value: Gender.male,
-                                  groupValue: _gender,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _gender = value!;
-                                      gender = 'male';
-                                    });
-                                  },
-                                ),
-                              ),
-                              ListTile(
-                                title: const Text('Female'),
-                                leading: Radio(
-                                  value: Gender.female,
-                                  groupValue: _gender,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _gender = value!;
-                                      gender = 'female';
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: Column(
-                            children: <Widget>[
-                              const Text('Age'),
+                              const Text('location'),
                               TextFormField(
-                                controller: _ageController,
+                                controller: _locationController ,
                                 decoration: const InputDecoration(
                                   hintText: 'Age',
                                 ),
                                 keyboardType: TextInputType.number,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Please enter age';
+                                    return 'Please enter location';
                                   }
                                   return null;
                                 },
@@ -151,15 +98,15 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
-                              const Text('Address'),
+                              const Text('image'),
                               TextFormField(
-                                controller: _addressController,
+                                controller: _imageUrlController,
                                 decoration: const InputDecoration(
-                                  hintText: 'Address',
+                                  hintText: 'image',
                                 ),
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Please enter address';
+                                    return 'Please enter image';
                                   }
                                   return null;
                                 },
@@ -172,15 +119,15 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
-                              const Text('City'),
+                              const Text('Date'),
                               TextFormField(
-                                controller: _cityController,
+                                controller: _dateController,
                                 decoration: const InputDecoration(
-                                  hintText: 'City',
+                                  hintText: 'Date',
                                 ),
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Please enter city';
+                                    return 'Please enter Date';
                                   }
                                   return null;
                                 },
@@ -193,15 +140,15 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
-                              const Text('Country'),
+                              const Text('month'),
                               TextFormField(
-                                controller: _countryController,
+                                controller: _monthController,
                                 decoration: const InputDecoration(
                                   hintText: 'Country',
                                 ),
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Please enter country';
+                                    return 'Please enter month';
                                   }
                                   return null;
                                 },
@@ -210,54 +157,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                             ],
                           ),
                         ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: Column(
-                            children: <Widget>[
-                              const Text('Status'),
-                              ListTile(
-                                title: const Text('Positive'),
-                                leading: Radio(
-                                  value: Status.positive,
-                                  groupValue: _status,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _status = value!;
-                                      status = 'positive';
-                                    });
-                                  },
-                                ),
-                              ),
-                              ListTile(
-                                title: const Text('Dead'),
-                                leading: Radio(
-                                  value: Status.dead,
-                                  groupValue: _status,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _status = value!;
-                                      status = 'dead';
-                                    });
-                                  },
-                                ),
-                              ),
-                              ListTile(
-                                title: const Text('Recovered'),
-                                leading: Radio(
-                                  value: Status.recovered,
-                                  groupValue: _status,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _status = value!;
-                                      status = 'recovered';
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
+                       Container(
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
@@ -265,7 +165,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
                                 onPressed: () {
                                   if (_addFormKey.currentState!.validate()) {
                                     _addFormKey.currentState!.save();
-                                    api.updateCases(id, Cases(name: _nameController.text, gender: gender, age: int.parse(_ageController.text), address: _addressController.text, city: _cityController.text, country: _countryController.text, status: status, updated: DateTime.now().toString(), id: '')).whenComplete(() => Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/')));
+                                    api.updateCases(id, Events(name: _nameController.text, location:_locationController.text, imageUrl: _imageUrlController.text, date: _dateController.text, month: _monthController.text, updated: DateTime.now().toString(), id: '')).whenComplete(() => Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/')));
 
 
 

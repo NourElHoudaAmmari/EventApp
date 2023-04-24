@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:frontend/services/api_service.dart';
 
 import 'adddatawidget.dart';
-import 'caseslist.dart';
-import 'models/cases.dart';
+import 'EventsList.dart';
+import 'models/Events.dart';
 import 'pages/main_page.dart';
 
 void main() {
@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final ApiService api = ApiService();
-  late Future<List<Cases>> casesList;
+  late Future<List<Events>> casesList;
 
   @override
   void initState() {
@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
             future: casesList,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return CasesList(cases: snapshot.data!);
+                return EventsList(events: snapshot.data!);
               } else {
                 return Center(
                     child: Text('No data found, tap plus button to add!',
