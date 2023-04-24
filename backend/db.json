@@ -10,6 +10,17 @@
             "status": "dead",
             "updated": "2023-04-23 19:29:24.930",
             "id": "es4UXdJ"
+        },
+        {
+            "name": "sara",
+            "gender": "female",
+            "age": 22,
+            "address": "bizerte",
+            "city": "bizerte",
+            "country": "tunisia",
+            "status": "dead",
+            "updated": "2023-04-23 19:29:24.930",
+            "id": "es4UXdJ"
         }
 
     ]
