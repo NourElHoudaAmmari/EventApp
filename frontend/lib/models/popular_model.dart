@@ -1,5 +1,8 @@
+import 'package:frontend/models/user_model.dart';
+
 class PopularModel {
   final int? id;
+ 
   final String? name;
   final String? imageUrl;
   final String? isTicket;
@@ -8,6 +11,7 @@ class PopularModel {
 
   PopularModel({
     this.id,
+   
     this.name,
     this.imageUrl,
     this.isTicket,

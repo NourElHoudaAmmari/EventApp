@@ -68,6 +68,12 @@ class _MainPageState extends State<MainPage> {
             ),
             label: 'Profile',
           ),
+        BottomNavigationBarItem(
+          
+            icon:Icon(Icons.videocam_outlined,size: 29,color:Colors.grey ,),
+            
+            label: 'Live',
+          ),
         ],
       );
     }

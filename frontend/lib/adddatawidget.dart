@@ -28,7 +28,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Cases'),
+        title: const Text('Add Event'),
       ),
       body: Form(
         key: _addFormKey,
@@ -76,7 +76,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                                 keyboardType: TextInputType.number,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Please enter age';
+                                    return 'Please enter location';
                                   }
                                   return null;
                                 },
@@ -97,7 +97,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
                                 ),
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Please enter address';
+                                    return 'Please enter image';
                                   }
                                   return null;
                                 },

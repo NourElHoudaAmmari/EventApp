@@ -17,7 +17,7 @@ class PopularCard extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         width: 290,
-        height: 262,
+        height: 228,
         padding: const EdgeInsets.all(12),
         margin: const EdgeInsets.only(right: 18),
         decoration: BoxDecoration(

@@ -3,6 +3,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:frontend/Event/Event_Details/event_details_screen.dart';
 import 'package:frontend/models/event_model.dart';
 import 'package:frontend/shared/theme.dart';
 
@@ -30,8 +31,8 @@ class EventCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  width: 266,
-                  height: 90,
+                  width: 176,
+                  height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     image: DecorationImage(
@@ -111,13 +112,17 @@ class EventCard extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 22,
           ),
           SizedBox(
             width: double.infinity,
-            height: 35,
+            height: 33,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                 Navigator.push(context,
+    MaterialPageRoute(builder: (context) => EventDetailsScreen(event)),
+  );
+              },
               style: TextButton.styleFrom(
                 backgroundColor: orangeColor,
                 shape: RoundedRectangleBorder(

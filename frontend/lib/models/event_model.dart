@@ -1,13 +1,19 @@
+import 'package:frontend/models/user_model.dart';
+
 class EventModel {
   final String? id;
   final String? name;
+    final String? description;
   final String? location;
   final String? imageUrl;
   final String? date;
   final String? month;
+   //final User user;
 
   EventModel({
     this.id,
+   
+    this.description,
     this.name,
     this.location,
     this.imageUrl,
@@ -19,11 +25,12 @@ class EventModel {
 final events = [
   EventModel(
     id: '1',
-    name: 'Flutter training ',
+    name: 'Flutter Cross pmlateform training ',
     location: 'Marsa, Tunis',
     imageUrl: 'assets/img_event_1.png',
     date: '9',
     month: 'Sept',
+   
   ),
   EventModel(
     id: '2',
