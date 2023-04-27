@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:frontend/EventsList.dart';
 import 'package:frontend/models/event_model.dart';
 import 'package:frontend/models/popular_model.dart';
 import 'package:frontend/shared/theme.dart';
@@ -164,7 +165,11 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                                    Navigator.push(context,
+    MaterialPageRoute(builder: (context) => const EventsList(events: [],)),
+  );
+                    },
                     child: Text(
                       'See All',
                       style: greyTextStyle.copyWith(

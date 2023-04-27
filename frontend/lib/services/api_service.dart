@@ -43,7 +43,9 @@ class ApiService {
       'location': events.location,
       'imageUrl': events.imageUrl,
       'date': events.date,
-      'month': events.month,
+      'duree': events.duree,
+      'description': events.description,
+      'nbplace': events.nbplace,
       'updated': events.updated
     };
 
@@ -68,7 +70,9 @@ class ApiService {
       'location': events.location,
       'imageUrl': events.imageUrl,
       'date': events.date,
-      'month': events.month,
+      'duree': events.duree,
+      'description': events.description,
+      'nbplace': events.nbplace,
       'updated': events.updated
     };
 

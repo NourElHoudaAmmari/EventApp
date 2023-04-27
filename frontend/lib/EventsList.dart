@@ -23,7 +23,7 @@ class EventsList extends StatelessWidget {
                       );
                     },
                     child: ListTile(
-                      leading: const Icon(Icons.person),
+                  //    leading: const Icon(Icons.person),
                       title: Text(events[index].name),
                       subtitle: Text(events[index].location),
                     ),

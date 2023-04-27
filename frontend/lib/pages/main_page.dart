@@ -1,6 +1,8 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:frontend/adddatawidget.dart';
+import 'package:frontend/main.dart';
 import 'package:frontend/pages/home_page.dart';
 import 'package:frontend/shared/theme.dart';
 
@@ -30,28 +32,52 @@ class _MainPageState extends State<MainPage> {
         ),
         showUnselectedLabels: true,
         items: [
+         BottomNavigationBarItem(
+  icon: GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+    },
+    child: Image.asset(
+      'assets/ic_home.png',
+      width: 24,
+      color: currentIndex == 0 ? orangeColor : greyColor,
+    ),
+  ),
+  label: 'Home',
+),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/ic_home.png',
-              width: 24,
-              color: currentIndex == 0 ? orangeColor : greyColor,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
+           icon:GestureDetector(
+            onTap: (){
+
+            },
+            child:   Image.asset(
               'assets/ic_search.png',
               width: 24,
               color: currentIndex == 1 ? orangeColor : greyColor,
             ),
+           ),
             label: 'Explore',
-          ),
-          BottomNavigationBarItem(
-            
-            icon:Icon(Icons.add_rounded,size: 29,color:Colors.deepOrangeAccent ,),
-            
-            label: '',
-          ),
+           ),
+        
+        BottomNavigationBarItem(
+  icon: GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const AddDataWidget(),
+        ),
+      );
+    },
+    child: Icon(Icons.add_rounded,size: 29,color:Colors.deepOrangeAccent),
+  ),
+  label: '',
+),
           BottomNavigationBarItem(
             icon: Image.asset(
              'assets/ic_favorite.png',
@@ -68,18 +94,26 @@ class _MainPageState extends State<MainPage> {
             ),
             label: 'Profile',
           ),
-        BottomNavigationBarItem(
-          
-            icon:Icon(Icons.videocam_outlined,size: 29,color:Colors.grey ,),
-            
-            label: 'Live',
-          ),
+      BottomNavigationBarItem(
+  icon: GestureDetector(
+    onTap: () {
+     /* Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ,
+        ),
+      );*/
+    },
+    child: Icon(Icons.videocam_outlined,size: 29,color:Colors.grey),
+  ),
+  label: 'Live',
+),
         ],
       );
     }
 
     return Scaffold(
-      body: const HomePage(),
+      body: const  MyHomePage(),
       bottomNavigationBar: customBottomNavbar(),
     );
   }

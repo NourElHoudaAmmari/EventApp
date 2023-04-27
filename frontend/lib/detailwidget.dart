@@ -44,6 +44,18 @@ class _DetailWidgetState extends State<DetailWidget> {
                           ],
                         ),
                       ),
+                          Container(
+                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: Column(
+                          children: <Widget>[
+                            Text('Description:',
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.8))),
+                            Text(widget.events.description,
+                                style: Theme.of(context).textTheme.headline6)
+                          ],
+                        ),
+                      ),
                       Container(
                         margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                         child: Column(
@@ -52,6 +64,42 @@ class _DetailWidgetState extends State<DetailWidget> {
                                 style: TextStyle(
                                     color: Colors.black.withOpacity(0.8))),
                             Text(widget.events.location,
+                                style: Theme.of(context).textTheme.headline6)
+                          ],
+                        ),
+                      ),
+                          Container(
+                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: Column(
+                          children: <Widget>[
+                            Text('Date:',
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.8))),
+                            Text(widget.events.date,
+                                style: Theme.of(context).textTheme.headline6)
+                          ],
+                        ),
+                      ),
+                          Container(
+                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: Column(
+                          children: <Widget>[
+                            Text('Duration:',
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.8))),
+                            Text(widget.events.duree,
+                                style: Theme.of(context).textTheme.headline6)
+                          ],
+                        ),
+                      ),
+                          Container(
+                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: Column(
+                          children: <Widget>[
+                            Text('Number of places:',
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.8))),
+                            Text(widget.events.nbplace,
                                 style: Theme.of(context).textTheme.headline6)
                           ],
                         ),
@@ -68,31 +116,7 @@ class _DetailWidgetState extends State<DetailWidget> {
                           ],
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: Column(
-                          children: <Widget>[
-                            Text('date:',
-                                style: TextStyle(
-                                    color: Colors.black.withOpacity(0.8))),
-                            Text(widget.events.date,
-                                style: Theme.of(context).textTheme.headline6)
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: Column(
-                          children: <Widget>[
-                            Text('month:',
-                                style: TextStyle(
-                                    color: Colors.black.withOpacity(0.8))),
-                            Text(widget.events.month,
-                                style: Theme.of(context).textTheme.headline6)
-                          ],
-                        ),
-                      ),
-
+                      
 
 
                       IntrinsicWidth(
