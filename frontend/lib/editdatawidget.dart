@@ -25,14 +25,14 @@ class _EditDataWidgetState extends State<EditDataWidget> {
    final _nbplace = TextEditingController();
   @override
   void initState() {
-    id = widget.events.id;
-    _nameController.text = widget.events.name;
-    _locationController.text = widget.events.location;
-    _imageUrlController.text = widget.events.imageUrl;
-    _dateController.text = widget.events.date;
-    _dureeController.text = widget.events.duree;
-    _nbplace.text = widget.events.nbplace;
-    _descriptionController.text = widget.events.description;
+    id = widget.events.id!;
+    _nameController.text = widget.events.name!;
+    _locationController.text = widget.events.location!;
+    _imageUrlController.text = widget.events.imageUrl!;
+    _dateController.text = widget.events.date!;
+    _dureeController.text = widget.events.duree!;
+    _nbplace.text = widget.events.nbplace!;
+    _descriptionController.text = widget.events.description!;
 
     super.initState();
   }

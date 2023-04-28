@@ -6,27 +6,27 @@ import 'package:http/http.dart';
 
 //ALL THE CRUD METHODS WILL BE FOUND HERE
 class ApiService {
-  final String apiUrl = "http://localhost:3000/events";
+  final Uri apiUrl = Uri.parse("http://localhost:3000/events");
 
   //GET METHOD (ALL)
-  Future<List<Events>> getCases() async {
+  Future<List<Events>> getEvents() async {
     Response res = await get(
-      Uri.parse(apiUrl),
-      headers: {"Accept": "application/json"},
-    );
+      apiUrl );
 
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
       List<Events> events =
           body.map((dynamic item) => Events.fromJson(item)).toList();
       return events;
+     
     } else {
       throw "Failed to load cases list";
     }
+    
   }
 
   //GET METHOD (per id)
-  Future<Events> getCaseById(String id) async {
+  Future<Events> getEventById(String id) async {
     final response = await get(Uri.parse('$apiUrl/$id'));
 
     if (response.statusCode == 200) {
@@ -37,7 +37,7 @@ class ApiService {
   }
 
   //POST METHOD
-  Future<Events> createCase(Events events) async {
+  Future<Events> createEvent(Events events) async {
     Map data = {
       'name': events.name,
       'location': events.location,
@@ -50,13 +50,13 @@ class ApiService {
     };
 
     final Response response = await post(
-      Uri.parse(apiUrl),
+      apiUrl,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(data),
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return Events.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to post cases');

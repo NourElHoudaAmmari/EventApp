@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/adddatawidget.dart';
 import 'package:frontend/main.dart';
+import 'package:frontend/pages/home_page.dart';
 
 class MainDrawer extends StatefulWidget {
   const MainDrawer({super.key});
@@ -27,11 +28,11 @@ Container(
         Container(
           width: 100,
           height: 100,
-          margin: EdgeInsets.only(
+          margin: const EdgeInsets.only(
             top: 30,
             bottom: 10,
           ),
-          decoration: BoxDecoration(
+          decoration:const BoxDecoration(
             shape: BoxShape.circle,
             image: DecorationImage(image: AssetImage( "assets/img_profile.png",),
             fit: BoxFit.fill),
@@ -66,13 +67,13 @@ ListTile(
   onTap:(){
      Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const MyHomePage()),
+              MaterialPageRoute(builder: (context) => const HomePage()),
             );
   },
 ),
 ListTile(
-  leading: Icon(Icons.person),
-  title: Text(
+  leading: const Icon(Icons.person),
+  title: const Text(
     'Profile',
     style: TextStyle(
       fontSize: 18,
@@ -83,8 +84,8 @@ ListTile(
   },
 ),
 ListTile(
-  leading: Icon(Icons.post_add),
-  title: Text(
+  leading: const Icon(Icons.post_add),
+  title:const Text(
     'Event',
     style: TextStyle(
       fontSize: 18,
@@ -99,8 +100,8 @@ ListTile(
 ),
 
 ListTile(
-  leading: Icon(Icons.settings),
-  title: Text(
+  leading:const  Icon(Icons.settings),
+  title:const  Text(
     'Paramétres',
     style: TextStyle(
       fontSize: 18,
@@ -109,8 +110,8 @@ ListTile(
   onTap: null,
 ),
 ListTile(
-  leading: Icon(Icons.power_settings_new),
-  title: Text(
+  leading: const Icon(Icons.power_settings_new),
+  title:const  Text(
     'Logout',
     style: TextStyle(
       fontSize: 18,

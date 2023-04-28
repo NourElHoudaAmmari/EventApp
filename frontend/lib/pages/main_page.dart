@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:frontend/adddatawidget.dart';
-import 'package:frontend/main.dart';
 import 'package:frontend/pages/home_page.dart';
 import 'package:frontend/shared/theme.dart';
 
@@ -50,19 +49,14 @@ class _MainPageState extends State<MainPage> {
   ),
   label: 'Home',
 ),
-          BottomNavigationBarItem(
-           icon:GestureDetector(
-            onTap: (){
-
-            },
-            child:   Image.asset(
-              'assets/ic_search.png',
+    BottomNavigationBarItem(
+            icon: Image.asset(
+             'assets/ic_favorite.png',
               width: 24,
               color: currentIndex == 1 ? orangeColor : greyColor,
             ),
-           ),
-            label: 'Explore',
-           ),
+            label: 'Favorite',
+          ),      
         
         BottomNavigationBarItem(
   icon: GestureDetector(
@@ -78,19 +72,12 @@ class _MainPageState extends State<MainPage> {
   ),
   label: '',
 ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-             'assets/ic_favorite.png',
-              width: 24,
-              color: currentIndex == 3 ? orangeColor : greyColor,
-            ),
-            label: 'Favorite',
-          ),
+          
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/ic_profile.png',
               width: 24,
-              color: currentIndex == 4 ? orangeColor : greyColor,
+              color: currentIndex == 3 ? orangeColor : greyColor,
             ),
             label: 'Profile',
           ),
@@ -113,7 +100,7 @@ class _MainPageState extends State<MainPage> {
     }
 
     return Scaffold(
-      body: const  MyHomePage(),
+      body: const HomePage(),
       bottomNavigationBar: customBottomNavbar(),
     );
   }

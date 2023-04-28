@@ -2,19 +2,73 @@
 
 import 'package:flutter/material.dart';
 import 'package:frontend/EventsList.dart';
-import 'package:frontend/models/event_model.dart';
-import 'package:frontend/models/popular_model.dart';
+import 'package:frontend/models/Events.dart';
+import 'package:frontend/pages/mainDrawer.dart';
+import 'package:frontend/services/api_service.dart';
 import 'package:frontend/shared/theme.dart';
-import 'package:frontend/widgets/event_card.dart';
-import 'package:frontend/widgets/popular_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+    final ApiService api = ApiService();
+   
+   late Future<List<Events>> eventList;
+  @override
+  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      eventList = api.getEvents() ;
+    });
+  }
+  @override
   Widget build(BuildContext context) {
-    Widget header() {
-      return Container(
+   
+    return Scaffold(
+      key: _key,
+        backgroundColor: backgroundColor,
+      drawer:const MainDrawer(),
+      appBar: AppBar(
+         
+       title: Center(child: Text(
+          "Events App",
+          style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold),
+        ),
+       ),
+        elevation: 0.0,
+
+        backgroundColor: Colors.deepOrange,
+        leading: IconButton(
+          icon:const Icon(
+            Icons.menu,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            _key.currentState?.openDrawer();
+          },
+        ),
+          actions: <Widget>[
+          IconButton(
+              icon: Icon(
+                Icons.notifications_none,
+                color: Colors.white
+              ),
+              onPressed: () {}),
+        ],
+          
+      ),
+       body: Column(
+        children: [
+         Container(
         margin: const EdgeInsets.only(
           top: 24,
           left: 24,
@@ -27,18 +81,20 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hello, Mohamed',
-                    style: placeholderTextStyle,
+                    'Hello Mohamed',
+                      style: primaryTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: semiBold,
+                    ),
+                   
                   ),
                   const SizedBox(
                     height: 2,
                   ),
                   Text(
-                    'Discover our events',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 20,
-                      fontWeight: semiBold,
-                    ),
+                    'Discover our Events',
+                     style: placeholderTextStyle,
+                  
                   ),
                 ],
               ),
@@ -55,163 +111,47 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-      );
-    }
-
-    Widget search() {
-      return Container(
-        margin: const EdgeInsets.only(
-          top: 24,
-          left: 24,
-          right: 24,
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 18),
-        height: 54,
-        decoration: BoxDecoration(
-          color: whiteColor,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          children: [
-            Container(
-              height: 24,
-              width: 24,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/ic_search.png'),
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 12,
-            ),
-            Expanded(
-              child: TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Search all events...',
-                  hintStyle: placeholderTextStyle.copyWith(
-                    fontSize: 14,
-                    fontWeight: regular,
-                  ),
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    Widget upcomingEvents() {
-      return Container(
-        margin: const EdgeInsets.only(
-          top: 24,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-              ),
-              child: Text(
-                'Upcoming Events',
-                style: primaryTextStyle.copyWith(
-                  fontSize: 18,
-                  fontWeight: semiBold,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 13,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 24,
-              ),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: events
-                      .map(
-                        (item) => EventCard(item),
-                      )
-                      .toList(),
-                ),
-              ),
-            )
-          ],
-        ),
-      );
-    }
-
-    Widget popularNow() {
-      return Container(
-        margin: const EdgeInsets.only(
-          top: 24,
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Popular Events',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                                    Navigator.push(context,
-    MaterialPageRoute(builder: (context) => const EventsList(events: [],)),
-  );
-                    },
-                    child: Text(
-                      'See All',
-                      style: greyTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: medium,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 24,
-              ),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                    children:
-                        populars.map((item) => PopularCard(item)).toList()),
-              ),
-            )
-          ],
-        ),
-      );
-    }
-
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      body: SafeArea(
-        child: ListView(
-          children: [
-            header(),
-            search(),
-            upcomingEvents(),
-            popularNow(),
-          ],
-        ),
       ),
-    );
+      SizedBox(height: 16,),
+          Container
+           (width: 450,
+         
+            child: 
+          TextField(
+   // controller: _searchController,
+    onChanged: (value) {
+      
+    },
+    decoration: InputDecoration(
+      hintText: 'Search',
+      prefixIcon: Icon(Icons.search,color: Colors.grey,),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.grey),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      
+    ),
+    cursorColor: Colors.grey,
+    
+  ),
+          ),
+          SizedBox(height: 14,),
+          Expanded(
+            child:FutureBuilder(
+      future: eventList,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return EventsList(events:snapshot.data!);
+        } if(snapshot.hasError) {
+          return  Center(child: Text('Some error occurred ${snapshot.error}'));
+        }
+        return Center(child: CircularProgressIndicator());
+      },
+    ), 
+            ),
+        ],
+       ),
+  );  
   }
 }
+
