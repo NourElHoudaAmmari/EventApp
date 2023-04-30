@@ -23,8 +23,8 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
   @override
-  void initState() {
-    super.initState();
+  void get initState {
+    super.initState;
 
     setState(() {
       eventList = api.getEvents() ;

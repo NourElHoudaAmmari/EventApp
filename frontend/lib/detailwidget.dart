@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/inscription_list.dart';
+import 'package:frontend/pages/inscription_screen.dart';
 import 'package:frontend/shared/theme.dart';
 import 'package:intl/intl.dart';
 import 'editdatawidget.dart';
@@ -215,7 +217,10 @@ bool _isLiked = false;
       SizedBox(width: 5),
       
       ElevatedButton(onPressed: (){
-
+ Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) =>InscriptionEvent() ),
+    );
       },
        child: Text(" Register"),
        ),
@@ -242,23 +247,14 @@ bool _isLiked = false;
                                     style: TextStyle(color: Colors.white)),
                               ),
                             ),
-                            ElevatedButton(
-                              onPressed: () {
-                                _confirmDialog();
-                              },
-                              child: const Text('Delete',
-                                  style: TextStyle(color: Colors.white)),
-                            )
-                          ],
-                        ),
-                      ),*/
+                          */
+
+
                     ],
-                  )
-                  
+                  ),
                 )
                 ),
     );
-      
   }
 
   _navigateToEditScreen(BuildContext context, Events events) async {
@@ -268,37 +264,5 @@ bool _isLiked = false;
     );
   }
 
-  Future<void> _confirmDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Warning!'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Text('Are you sure want delete this item?'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              child: const Text('Yes'),
-              onPressed: () {
-                api.deleteCase(widget.events.id!);
-                Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/'));
-              },
-            ),
-            ElevatedButton(
-              child: const Text('No'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  
 }

@@ -140,5 +140,16 @@
       "updated": "2023-04-28 14:24:01.136",
       "id": "y0anztw"
     }
+  ],
+  "inscriptions": [
+    {
+      "nom": "Jbeli",
+      "prenom": "Mayssa",
+      "numtel": 23321123,
+      " mail": "maissa@gmail.com",
+      "adresse": "Fouchena",
+      "updated": null,
+      "id": "1"
+    }
   ]
 }

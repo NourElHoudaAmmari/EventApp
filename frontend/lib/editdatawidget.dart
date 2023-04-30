@@ -24,7 +24,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
   final _dureeController = TextEditingController();
    final _nbplace = TextEditingController();
   @override
-  void initState() {
+  void get initState {
     id = widget.events.id!;
     _nameController.text = widget.events.name!;
     _locationController.text = widget.events.location!;
@@ -34,7 +34,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
     _nbplace.text = widget.events.nbplace!;
     _descriptionController.text = widget.events.description!;
 
-    super.initState();
+    super.initState;
   }
 
   @override
