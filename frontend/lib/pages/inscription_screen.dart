@@ -168,7 +168,7 @@ SizedBox(height: 10,),
                           child: Column(
                             children: <Widget>[
                              Text(
-      'Adresse',
+      'Adress',
       style: TextStyle(
         color: Colors.grey[700],
         fontSize: 18,

@@ -31,7 +31,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
     _imageUrlController.text = widget.events.imageUrl!;
     _dateController.text = widget.events.date!;
     _dureeController.text = widget.events.duree!;
-    _nbplace.text = widget.events.nbplace!;
+    _nbplace.text = widget.events.nbplace!.toString(); ;
     _descriptionController.text = widget.events.description!;
 
     super.initState;
@@ -330,7 +330,7 @@ SizedBox(height: 10,),
                                 onPressed: () {
                                   if (_addFormKey.currentState!.validate()) {
                                     _addFormKey.currentState!.save();
-                                    api.updateCases(id, Events(name: _nameController.text, location:_locationController.text, imageUrl: _imageUrlController.text, date: _dateController.text, duree: _dureeController.text,nbplace: _nbplace.text,description: _descriptionController.text, updated: DateTime.now().toString(), id: '')).whenComplete(() => Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/')));
+                                    api.updateCases(id, Events(name: _nameController.text, location:_locationController.text, imageUrl: _imageUrlController.text, date: _dateController.text, duree: _dureeController.text,nbplace: int.parse(_nbplace.text),description: _descriptionController.text, updated: DateTime.now().toString(), id: '')).whenComplete(() => Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/')));
 
 
 

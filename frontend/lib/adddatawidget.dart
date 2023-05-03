@@ -36,7 +36,7 @@ class _AddDataWidgetState extends State<AddDataWidget> {
   Future<void> _addEvent()async{
      if (_addFormKey.currentState!.validate()) {
       _addFormKey.currentState!.save();
-      await api.createEvent(Events(name: _nameController.text,description: _descriptionController.text,  location: _locationController.text, imageUrl: _imageUrlController.text, date: _dateController.text, duree: _dureeController.text,nbplace: _nbplace.text, updated: DateTime.now().toString()));
+      await api.createEvent(Events(name: _nameController.text,description: _descriptionController.text,  location: _locationController.text, imageUrl: _imageUrlController.text, date: _dateController.text, duree: _dureeController.text,nbplace:int.parse( _nbplace.text), updated: DateTime.now().toString()));
        Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/'));
         ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(

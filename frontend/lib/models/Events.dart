@@ -6,7 +6,7 @@ class Events {
   late final String? imageUrl;
  late  final String? date;
  late final String? duree;
- late  final String? nbplace;
+ late  final int? nbplace;
  late final String? updated;
 
   Events(
