@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/shared/theme.dart';
 
 class InscriptionEvent extends StatefulWidget {
   const InscriptionEvent({super.key});
@@ -19,6 +20,7 @@ class _InscriptionEventState extends State<InscriptionEvent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: orangeColor,
         title: const Text('Event registration'),
       ),
       body: Form(

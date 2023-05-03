@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:frontend/adddatawidget.dart';
+import 'package:frontend/widgets/adddatawidget.dart';
 import 'package:frontend/pages/home_page.dart';
 import 'package:frontend/shared/theme.dart';
 

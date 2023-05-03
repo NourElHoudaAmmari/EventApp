@@ -1,11 +1,12 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:frontend/EventsList.dart';
+import 'package:frontend/widgets/EventsList.dart';
 import 'package:frontend/models/Events.dart';
 import 'package:frontend/pages/mainDrawer.dart';
 import 'package:frontend/services/api_service.dart';
 import 'package:frontend/shared/theme.dart';
+import 'package:frontend/widgets/Events_edit_delete.dart';
 
 class HomePage extends StatefulWidget {
   
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
        ),
         elevation: 0.0,
 
-        backgroundColor: Colors.deepOrange,
+ backgroundColor: orangeColor,
         leading: IconButton(
           icon:const Icon(
             Icons.menu,
@@ -114,7 +115,7 @@ class _HomePageState extends State<HomePage> {
       ),
       SizedBox(height: 16,),
           Container
-           (width: 450,
+           (width: 380,
          
             child: 
           TextField(
@@ -135,7 +136,7 @@ class _HomePageState extends State<HomePage> {
     
   ),
           ),
-          SizedBox(height: 14,),
+          SizedBox(height: 19,),
           Expanded(
             child:FutureBuilder(
       future: eventList,

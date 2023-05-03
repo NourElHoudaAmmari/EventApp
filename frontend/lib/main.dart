@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:frontend/pages/mainDrawer.dart';
 import 'package:frontend/services/api_service.dart';
 import 'package:frontend/shared/theme.dart';
+import 'package:frontend/widgets/Events_edit_delete.dart';
 
-import 'adddatawidget.dart';
-import 'EventsList.dart';
+import 'widgets/adddatawidget.dart';
 import 'models/Events.dart';
 import 'pages/main_page.dart';
 
@@ -22,9 +22,10 @@ class MyApp extends StatelessWidget {
       title: 'Event App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+       // primarySwatch: Colors.blue,
       ),
       home: const MainPage(),
+
     );
   }
 }

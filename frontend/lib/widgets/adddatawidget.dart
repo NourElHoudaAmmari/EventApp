@@ -2,13 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:frontend/main.dart';
+import 'package:frontend/pages/home_page.dart';
 import 'package:frontend/services/api_service.dart';
 import 'package:frontend/shared/theme.dart';
 import 'package:image_picker/image_picker.dart';
-import 'models/Events.dart';
+import '../models/Events.dart';
 import 'package:intl/intl.dart';
-
-
 
 
 class AddDataWidget extends StatefulWidget {
@@ -37,7 +36,9 @@ class _AddDataWidgetState extends State<AddDataWidget> {
      if (_addFormKey.currentState!.validate()) {
       _addFormKey.currentState!.save();
       await api.createEvent(Events(name: _nameController.text,description: _descriptionController.text,  location: _locationController.text, imageUrl: _imageUrlController.text, date: _dateController.text, duree: _dureeController.text,nbplace: _nbplace.text, updated: DateTime.now().toString()));
-       Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/'));
+       Navigator.push(context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
         ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: Colors.green,
@@ -342,6 +343,7 @@ if(pickedDate!=null){
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     Text(
+  
       'Duration',
       style: TextStyle(
         color: Colors.grey[700],
@@ -350,7 +352,7 @@ if(pickedDate!=null){
     ),
     SizedBox(height: 10,),
  TextFormField(
- 
+   keyboardType: TextInputType.number,
   controller: _dureeController,
   decoration: InputDecoration(
     hintText: "Enter the event's duration",

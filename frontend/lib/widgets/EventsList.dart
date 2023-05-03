@@ -34,7 +34,7 @@ class EventsList extends StatelessWidget {
     children: [
       Expanded(
         child:  Image(
-        image: NetworkImage('assets/img_event_1.png'),
+ image: AssetImage('assets/img_event_1.png'),
         fit: BoxFit.cover,
         height: 30,
       ),

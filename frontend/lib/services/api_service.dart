@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 
 //ALL THE CRUD METHODS WILL BE FOUND HERE
 class ApiService {
-  final Uri apiUrl = Uri.parse("http://localhost:3000/events");
+  final Uri apiUrl = Uri.parse("http://192.168.1.215:3000/events");
 
   //GET METHOD (ALL)
   Future<List<Events>> getEvents() async {
@@ -32,7 +32,7 @@ class ApiService {
     if (response.statusCode == 200) {
       return Events.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load a case');
+      throw Exception('Failed to load a event');
     }
   }
 
@@ -59,7 +59,7 @@ class ApiService {
     if (response.statusCode == 201) {
       return Events.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to post cases');
+      throw Exception('Failed to post event');
     }
   }
 
@@ -86,7 +86,7 @@ class ApiService {
     if (response.statusCode == 200) {
       return Events.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to update a case');
+      throw Exception('Failed to update a event');
     }
   }
 
@@ -95,9 +95,9 @@ class ApiService {
     Response res = await delete(Uri.parse('$apiUrl/$id'));
 
     if (res.statusCode == 200) {
-      debugPrint("Case deleted");
+      debugPrint("event deleted");
     } else {
-      throw "Failed to delete a case.";
+      throw "Failed to delete a event.";
     }
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/services/api_service.dart';
 import 'package:frontend/services/api_service.dart';
-import 'models/Events.dart';
+import 'package:frontend/shared/theme.dart';
+import '../models/Events.dart';
 
 
 class EditDataWidget extends StatefulWidget {
@@ -41,6 +42,7 @@ class _EditDataWidgetState extends State<EditDataWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: orangeColor,
         title: const Text('Edit Event'),
       ),
       body: Form(
@@ -300,7 +302,7 @@ SizedBox(height: 10,),
                           ),
                         ),
                         SizedBox(height: 10,),
-                        Container(
+                       /* Container(
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: <Widget>[
@@ -320,26 +322,39 @@ SizedBox(height: 10,),
                               ),
                             ],
                           ),
-                        ),
+                        ),*/
                         
                        Container(
                           margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: Column(
-                            children: <Widget>[
-                              ElevatedButton(
-                                onPressed: () {
-                                  if (_addFormKey.currentState!.validate()) {
-                                    _addFormKey.currentState!.save();
-                                    api.updateCases(id, Events(name: _nameController.text, location:_locationController.text, imageUrl: _imageUrlController.text, date: _dateController.text, duree: _dureeController.text,nbplace: _nbplace.text,description: _descriptionController.text, updated: DateTime.now().toString(), id: '')).whenComplete(() => Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/')));
-
-
-
-                                  }
-                                },
-                                child: const Text('Save', style: TextStyle(color: Colors.white)),
-                              )
-                            ],
-                          ),
+                        child: Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: <Widget>[
+    ElevatedButton(
+      onPressed: () {
+        if (_addFormKey.currentState!.validate()) {
+          _addFormKey.currentState!.save();
+          api.updateCases(id, Events(
+              name: _nameController.text,
+              location: _locationController.text,
+              imageUrl: _imageUrlController.text,
+              date: _dateController.text,
+              duree: _dureeController.text,
+              nbplace: _nbplace.text,
+              description: _descriptionController.text,
+              updated: DateTime.now().toString(),
+              id: ''
+          )).whenComplete(() =>
+              Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/'))
+          );
+        }
+      },
+      child: const Text('Save', style: TextStyle(color: Colors.white)),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color.fromARGB(255, 4, 41, 72), 
+      ),
+    )
+  ],
+),
                         ),
                       ],
                     )

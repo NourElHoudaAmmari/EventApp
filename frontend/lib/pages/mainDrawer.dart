@@ -1,18 +1,28 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:frontend/adddatawidget.dart';
+import 'package:frontend/models/Events.dart';
+import 'package:frontend/services/api_service.dart';
+
+import 'package:frontend/widgets/Events_edit_delete.dart';
+import 'package:frontend/widgets/adddatawidget.dart';
 import 'package:frontend/main.dart';
 import 'package:frontend/pages/home_page.dart';
 
 class MainDrawer extends StatefulWidget {
-  const MainDrawer({super.key});
+  const MainDrawer({Key? key}) : super(key: key);
 
   @override
   State<MainDrawer> createState() => _MainDrawerState();
 }
 
 class _MainDrawerState extends State<MainDrawer> {
+  
+   @override
+   void initState() {
+    super.initState();
+     
+  }
   @override
   Widget build(BuildContext context) {
    return Drawer(
@@ -92,9 +102,10 @@ ListTile(
     ),
   ),
   onTap: (){
+    print("entred");
      Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AddDataWidget()),
+              MaterialPageRoute(builder: (context) => const EventEditDelete(events: [],) ),
             );
   },
 ),
@@ -102,7 +113,7 @@ ListTile(
 ListTile(
   leading:const  Icon(Icons.settings),
   title:const  Text(
-    'Paramétres',
+    'Settings',
     style: TextStyle(
       fontSize: 18,
     ),
