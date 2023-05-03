@@ -9,6 +9,8 @@ import 'package:frontend/widgets/adddatawidget.dart';
 import 'package:frontend/main.dart';
 import 'package:frontend/pages/home_page.dart';
 
+import 'inscription_list.dart';
+
 class MainDrawer extends StatefulWidget {
   const MainDrawer({Key? key}) : super(key: key);
 
@@ -109,6 +111,21 @@ ListTile(
             );
   },
 ),
+ListTile(
+  leading: const Icon(Icons.login_rounded),
+  title:const Text(
+    'Inscriptions',
+    style: TextStyle(
+      fontSize: 18,
+    ),
+  ),
+  onTap: (){
+     Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  InscriptionList()),
+            );
+  },
+),
 
 ListTile(
   leading:const  Icon(Icons.settings),
@@ -138,4 +155,5 @@ ListTile(
       ),
     );
   }
+  
 }

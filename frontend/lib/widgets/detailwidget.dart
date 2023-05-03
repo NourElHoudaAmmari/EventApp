@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/models/Events.dart';
+import 'package:frontend/pages/inscription_screen.dart';
 import 'package:frontend/services/api_service.dart';
 import 'package:frontend/shared/theme.dart';
 import 'package:intl/intl.dart';
 import 'editdatawidget.dart';
-import '../services/api_service.dart';
-import '../models/Events.dart';
+
 
 class DetailWidget extends StatefulWidget {
   const DetailWidget({Key? key, required this.events}) : super(key: key);
@@ -40,7 +41,7 @@ bool _isLiked = false;
                   decoration: BoxDecoration(border: Border.all(color: Colors.white)),
                    padding: const EdgeInsets.all(5.0),
                   child: Image(
-            image: AssetImage('assets/img_event_1.png'),
+        image: NetworkImage('assets/img_event_1.png'),
         fit: BoxFit.cover,
        
       ),
@@ -50,7 +51,7 @@ bool _isLiked = false;
           
                                      Text(" Event Name : "'${widget.events.name??""}',
                                      style: TextStyle(
-                                    color: Colors.deepOrange,fontSize: 24,fontWeight: FontWeight.bold),
+                                    color: Colors.black.withOpacity(0.8)),
                              ),
                                SizedBox(height: 3,),
                                Row(
@@ -69,9 +70,6 @@ bool _isLiked = false;
       icon: Icon(_isLiked? Icons.favorite : Icons.favorite_border),
       color: _isLiked ? Colors.red : Colors.black,
       onPressed: () {
-         setState(() {
-          _isLiked = !_isLiked;
-        });
       },
       
     ),
@@ -105,7 +103,7 @@ bool _isLiked = false;
   
                 Row(
   children: [
-    Icon(Icons.calendar_today, color: Color.fromARGB(255, 3, 49, 87)),
+    Icon(Icons.calendar_today, color: Colors.grey),
      SizedBox(width: 8),
     Text(
     widget.events.date??"",
@@ -136,7 +134,7 @@ bool _isLiked = false;
   
                 Row(
   children: [
-    Icon(Icons.place_outlined, color: const Color.fromARGB(255, 3, 49, 87)),
+    Icon(Icons.place_outlined, color: Colors.grey),
      SizedBox(width: 8),
     Text(
     widget.events.location??"",
@@ -167,7 +165,7 @@ bool _isLiked = false;
      SizedBox(height: 6,),
                  Row(
   children: [
-    Icon(Icons.timelapse, color: Color.fromARGB(255, 3, 49, 87)),
+    Icon(Icons.timelapse, color: Colors.grey),
      SizedBox(width: 8),
     Text(
      widget.events.duree??"",
@@ -209,31 +207,27 @@ bool _isLiked = false;
   ],
                          ),
                                        SizedBox(height: 12,),
-                Container(
+                  Container(
   decoration: BoxDecoration(
     border: Border.all(color: Colors.white),
     borderRadius: BorderRadius.circular(8),
   ),
   child: Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
     children: <Widget>[
       SizedBox(width: 5),
-      ElevatedButton(
-        onPressed: () {
-          
-        },
-        child: Text("Register"),
-        style: ElevatedButton.styleFrom(
-          minimumSize: Size(200, 50),
-          backgroundColor:  const Color.fromARGB(255, 3, 49, 87), // changer la couleur à votre choix
-        ),
-      ),
+      
+      ElevatedButton(onPressed: (){
+
+      Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) =>InscriptionEvent() ),
+    );
+      },
+       child: Text(" Register"),
+       ),
     ],
   ),
-),
-  
-                       
+                  ),
                     
                           
                     
