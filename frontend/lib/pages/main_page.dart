@@ -5,6 +5,8 @@ import 'package:frontend/widgets/adddatawidget.dart';
 import 'package:frontend/pages/home_page.dart';
 import 'package:frontend/shared/theme.dart';
 
+import 'Stream_Page.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -84,12 +86,12 @@ class _MainPageState extends State<MainPage> {
       BottomNavigationBarItem(
   icon: GestureDetector(
     onTap: () {
-     /* Navigator.push(
+      Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ,
+          builder: (context) => Stream_Page(),
         ),
-      );*/
+      );
     },
     child: Icon(Icons.videocam_outlined,size: 29,color:Colors.grey),
   ),
