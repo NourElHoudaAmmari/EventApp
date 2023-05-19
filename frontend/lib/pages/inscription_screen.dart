@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/constant.dart';
+import 'package:frontend/pages/inscription_list.dart';
+import 'package:frontend/pages/inscriptionn_list.dart';
 import 'package:frontend/services/inscription_service.dart';
 import '../models/inscription.dart';
 import '../shared/theme.dart';
@@ -262,7 +264,10 @@ SizedBox(height: 10,),
      adresse : adresseController.text)
      
      );
-        Navigator.of(context).pushNamedAndRemoveUntil('/', ModalRoute.withName('/'));
+      Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  InscriptionList()),
+            );
         ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: Colors.green,

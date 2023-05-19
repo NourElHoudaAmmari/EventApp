@@ -424,7 +424,7 @@ Column(
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:orangeColor,
+        backgroundColor:kPrimaryColor,
         title: const Text('Add Event'),
       ),
       body:Theme(

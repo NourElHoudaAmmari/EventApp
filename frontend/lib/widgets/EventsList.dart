@@ -33,11 +33,14 @@ class EventsList extends StatelessWidget {
 
     children: [
       Expanded(
-        child:  Container(
-          child: 
-                         Image.network(events[index].imageUrl??'')
-                      
-        ),
+      child: Container(
+  child: Image.network(
+    events[index].imageUrl ?? '',
+    errorBuilder: (context, error, stackTrace) {
+      return Image.asset('assets/img_event_4.png');
+    },
+  ),
+),
         ),
       
         Divider(thickness: 1,),

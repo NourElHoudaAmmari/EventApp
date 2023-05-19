@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/constant.dart';
 import 'package:frontend/models/Events.dart';
+import 'package:frontend/pages/Login/login_screen.dart';
 import 'package:frontend/pages/affich_page.dart';
 import 'package:frontend/services/api_service.dart';
 import 'package:frontend/widgets/EventsList.dart';
@@ -57,7 +58,7 @@ Container(
           ),
           decoration:const BoxDecoration(
             shape: BoxShape.circle,
-            image: DecorationImage(image: AssetImage( "assets/img_profile.png",),
+            image: DecorationImage(image: AssetImage( 'assets/profile_pic.png'),
             fit: BoxFit.fill),
             
           ),
@@ -157,13 +158,21 @@ ListTile(
     ),
   ),
   onTap:  (){
-        
-          
+
+          logoutUser();
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  LoginScreen()),
+            );
+
                   }
 ),
         ],
       ),
     );
   }
-  
+          void logoutUser() async {
+  await FirebaseAuth.instance.signOut();
+  // Perform any additional actions after logout if needed
+}
 }

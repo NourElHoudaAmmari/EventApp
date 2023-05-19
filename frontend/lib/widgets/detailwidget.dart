@@ -41,17 +41,19 @@ bool _isLiked = false;
                   width: 600.0,
                   decoration: BoxDecoration(border: Border.all(color: Colors.white)),
                    padding: const EdgeInsets.all(5.0),
-                  child: Image(
-        image: AssetImage('assets/img_event_1.png'),
-        fit: BoxFit.cover,
-       
-      ),
+                  child: Image.network(
+    widget.events.imageUrl ?? '',
+    errorBuilder: (context, error, stackTrace) {
+      return Image.asset('assets/img_event_4.png');
+    },
+  )
                  ),
                      const SizedBox(height: 6),
 
           
                                      Text(" Event Name : "'${widget.events.name??""}',
                                      style: TextStyle(
+                                      fontWeight: FontWeight.bold,
                                     color: Colors.black.withOpacity(0.8)),
                              ),
                                SizedBox(height: 3,),

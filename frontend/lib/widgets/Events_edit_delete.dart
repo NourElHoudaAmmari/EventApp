@@ -43,13 +43,13 @@ class _EventEditDeleteState extends State<EventEditDelete> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: Image(
-          
-                  image: AssetImage('assets/img_event_1.png'),
-
-                fit: BoxFit.cover,
-                height: 30,
-              ),
+              child: Image.network(
+                
+    widget.events[index].imageUrl ?? '',
+    errorBuilder: (context, error, stackTrace) {
+      return Image.asset('assets/img_event_4.png');
+    },
+  ),
             ),
             Container(
               padding: const EdgeInsets.all(4.0),

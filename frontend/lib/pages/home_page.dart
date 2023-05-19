@@ -3,12 +3,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/constant.dart';
+import 'package:frontend/pages/Stream_Page.dart';
 import 'package:frontend/widgets/EventsList.dart';
 import 'package:frontend/models/Events.dart';
 import 'package:frontend/pages/mainDrawer.dart';
 import 'package:frontend/services/api_service.dart';
 import 'package:frontend/shared/theme.dart';
 import 'package:frontend/widgets/Events_edit_delete.dart';
+import 'package:frontend/widgets/adddatawidget.dart';
 
 class HomePage extends StatefulWidget {
   
@@ -19,6 +21,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+    int currentIndex = 0;
   String getCurrentUserName() {
   User? user = FirebaseAuth.instance.currentUser;
   String? userName = user?.displayName;
@@ -40,8 +43,91 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
+        Widget customBottomNavbar() {
+      return BottomNavigationBar(
+        selectedItemColor: orangeColor,
+        currentIndex: currentIndex,
+        selectedLabelStyle: orangeTextStyle.copyWith(
+          fontSize: 10,
+          fontWeight: medium,
+        ),
+        type: BottomNavigationBarType.fixed,
+        unselectedLabelStyle: greyTextStyle.copyWith(
+          fontSize: 10,
+          fontWeight: medium,
+        ),
+        showUnselectedLabels: true,
+        items: [
+         BottomNavigationBarItem(
+  icon: GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+    },
+    child: Image.asset(
+      'assets/ic_home.png',
+      width: 24,
+      color: currentIndex == 0 ? orangeColor : greyColor,
+    ),
+  ),
+  label: 'Home',
+),
+    BottomNavigationBarItem(
+            icon: Image.asset(
+             'assets/ic_favorite.png',
+              width: 24,
+              color: currentIndex == 1 ? orangeColor : greyColor,
+            ),
+            label: 'Favorite',
+          ),      
+        
+        BottomNavigationBarItem(
+  icon: GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const AddDataWidget(),
+        ),
+      );
+    },
+    child: Icon(Icons.add_rounded,size: 29,color:Colors.deepOrangeAccent),
+  ),
+  label: '',
+),
+          
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/ic_profile.png',
+              width: 24,
+              color: currentIndex == 3 ? orangeColor : greyColor,
+            ),
+            label: 'Profile',
+          ),
+      BottomNavigationBarItem(
+  icon: GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Stream_Page(),
+        ),
+      );
+    },
+    child: Icon(Icons.videocam_outlined,size: 29,color:Colors.grey),
+  ),
+  label: 'Live',
+),
+        ],
+      );
+    }
        String userName = getCurrentUserName();
     return Scaffold(
+      bottomNavigationBar: customBottomNavbar(),
       key: _key,
         backgroundColor: Colors.white,
       drawer:const MainDrawer(),
@@ -89,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-               'Welcome ',
+               'Welcome Back !',
                       style: primaryTextStyle.copyWith(
                       fontSize: 20,
                       fontWeight: semiBold,
@@ -120,6 +206,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+     
       SizedBox(height: 16,),
           Container
            (width: 380,
@@ -142,7 +229,9 @@ class _HomePageState extends State<HomePage> {
     cursorColor: Colors.grey,
     
   ),
+  
           ),
+      
           SizedBox(height: 19,),
           Expanded(
             child:FutureBuilder(
@@ -158,7 +247,11 @@ class _HomePageState extends State<HomePage> {
     ), 
             ),
         ],
+        
        ),
+       
+       
+       
   );  
   }
 }
