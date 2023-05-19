@@ -17,10 +17,13 @@ class _InscriptionnsListState extends State<InscriptionnsList> {
 
   @override
   Widget build(BuildContext context) {
+    
     return ListView.builder(
+      
         itemCount: widget.inscriptions.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
+            
             child: ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -32,6 +35,7 @@ class _InscriptionnsListState extends State<InscriptionnsList> {
                   ),
                 );
               },
+              
               child: Container(
                 color: Colors.grey[100],
                 child: ListTile(

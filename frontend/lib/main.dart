@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/Welcome/welcome_screen.dart';
 import 'package:frontend/pages/mainDrawer.dart';
 import 'package:frontend/services/api_service.dart';
 import 'package:frontend/shared/theme.dart';
@@ -6,10 +7,17 @@ import 'package:frontend/widgets/Events_edit_delete.dart';
 
 import 'widgets/adddatawidget.dart';
 import 'models/Events.dart';
+import'package:firebase_core/firebase_core.dart';
 import 'pages/main_page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main()async {
+
+ try {
+   WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp();
+
+ } catch (e) {}
+ runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
        // primarySwatch: Colors.blue,
       ),
-      home: const MainPage(),
+      home: const WelcomeScreen(),
 
     );
   }

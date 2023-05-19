@@ -44,7 +44,9 @@ class _EventEditDeleteState extends State<EventEditDelete> {
           children: [
             Expanded(
               child: Image(
+          
                   image: AssetImage('assets/img_event_1.png'),
+
                 fit: BoxFit.cover,
                 height: 30,
               ),

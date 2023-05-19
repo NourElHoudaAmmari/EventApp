@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/constant.dart';
 import 'package:frontend/main.dart';
 import 'package:frontend/pages/home_page.dart';
 import 'package:frontend/services/api_service.dart';
@@ -8,7 +10,7 @@ import 'package:frontend/shared/theme.dart';
 import 'package:image_picker/image_picker.dart';
 import '../models/Events.dart';
 import 'package:intl/intl.dart';
-
+import 'package:path/path.dart' as Path;
 
 class AddDataWidget extends StatefulWidget {
   const AddDataWidget({Key? key}) : super(key: key);
@@ -30,12 +32,43 @@ class _AddDataWidgetState extends State<AddDataWidget> {
   final _dureeController = TextEditingController();
    final _nbplace = TextEditingController();
    bool _isChecked = false;
- File? _imageFile;
   bool _isLoading = false;
+
+  File? _imageFile;
+  
+Future<void> _pickImage(ImageSource source) async {
+  final picker = ImagePicker();
+  final pickedImage = await picker.pickImage(source: source);
+  if (pickedImage != null) {
+    setState(() {
+      _imageFile = File(pickedImage.path);
+      _imageUrlController.text = Path.basename(_imageFile!.path);
+    });
+  }
+
+}
+Future<String> _uploadImageToStorage(File file) async {
+  final storageRef = FirebaseStorage.instance.ref().child('${Path.basename(file.path)}');
+  final uploadTask = storageRef.putFile(file);
+  final snapshot = await uploadTask;
+  return snapshot.ref.getDownloadURL();
+}
+  String imageUrl = '';
+
+
   Future<void> _addEvent()async{
      if (_addFormKey.currentState!.validate()) {
       _addFormKey.currentState!.save();
-      await api.createEvent(Events(name: _nameController.text,description: _descriptionController.text,  location: _locationController.text, imageUrl: _imageUrlController.text, date: _dateController.text, duree: _dureeController.text,nbplace: _nbplace.text, updated: DateTime.now().toString()));
+       /*if (_imageFile != null) {
+      // Upload the image to Firebase Storage
+      imageUrl = await _uploadImageToStorage(_imageFile!);
+    }*/
+      await api.createEvent(Events(name: _nameController.text,description: _descriptionController.text, 
+       location: _locationController.text,
+         date: _dateController.text,
+          duree: _dureeController.text,
+        imageUrl: _imageUrlController.text,
+          nbplace: _nbplace.text, updated: DateTime.now().toString()));
        Navigator.push(context,
               MaterialPageRoute(builder: (context) => HomePage()),
             );
@@ -53,15 +86,6 @@ class _AddDataWidgetState extends State<AddDataWidget> {
     
   }
 
- Future<void> _pickImage(ImageSource source) async {
-    final picker = ImagePicker();
-    final pickedImage = await picker.pickImage(source: source);
-    if (pickedImage != null) {
-      setState(() {
-        _imageFile = File(pickedImage.path);
-      });
-    }
-  }
    bool isCompleted = false;
    List<Step>stepList()=>[
     Step(
@@ -420,7 +444,7 @@ Column(
         if(isDetailValid){
    if(isLastStep){
     _addEvent();
-          
+         ;
         setState(() {
             
             isCompleted = true;
@@ -460,7 +484,7 @@ controlsBuilder: (context, details,{onStepContinue, onStepCancel}) {
         Expanded(
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-    backgroundColor:Color.fromARGB(255, 4, 41, 72),
+    backgroundColor:kPrimaryColor,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
     ),

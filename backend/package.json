@@ -4,12 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "run-server": "json-server --host 192.168.1.17 db.json"
+    "run-server": "json-server --host 192.168.1.9 db.json"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "json-server": "^0.17.3",
-    "jsonserver": "^0.1.6"
+    "json-server-auth": "^2.1.0"
   }
 }

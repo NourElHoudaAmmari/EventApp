@@ -33,16 +33,19 @@ class EventsList extends StatelessWidget {
 
     children: [
       Expanded(
-        child:  Image(
- image: AssetImage('assets/img_event_1.png'),
-        fit: BoxFit.cover,
-        height: 30,
-      ),
-      ),
+        child:  Container(
+          child: 
+                         Image.network(events[index].imageUrl??'')
+                      
+        ),
+        ),
+      
         Divider(thickness: 1,),
                   Container(
                       padding: const EdgeInsets.all(4.0),
                       child:Text(events[index].name??"",
+                      maxLines: 1,
+                       overflow: TextOverflow.ellipsis,
                   //    leading: const Icon(Icons.person),
         
                           style: TextStyle(

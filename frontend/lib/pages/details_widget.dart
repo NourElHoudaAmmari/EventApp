@@ -1,3 +1,5 @@
+import 'package:frontend/constant.dart';
+
 import '../models/inscription.dart';
 import '../services/inscription_service.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +22,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: orangeColor,
+        backgroundColor: kPrimaryColor,
         title: const Text(' Inscription Details'),
       ),
       body: SingleChildScrollView(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/constant.dart';
 import 'package:frontend/services/inscription_service.dart';
 import '../models/inscription.dart';
 import '../shared/theme.dart';
@@ -23,7 +24,7 @@ class _InscriptionEventState extends State<InscriptionEvent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: orangeColor,
+          backgroundColor: kPrimaryColor,
         title: const Text('Event registration'),
       ),
       body: Form(
@@ -277,7 +278,7 @@ SizedBox(height: 10,),
                                   },
                                 
                                    style: ElevatedButton.styleFrom(
-    backgroundColor: Colors.blue[400],
+    backgroundColor: Color.fromARGB(255, 4, 41, 72),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
     ),

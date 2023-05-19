@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 
 //ALL THE CRUD METHODS WILL BE FOUND HERE
 class InscriptionService {
-  final Uri apiUrl = Uri.parse("http://localhost:3000/inscriptions");
+  final Uri apiUrl = Uri.parse("http://192.168.1.9:3000/inscriptions");
 
   //GET METHOD (ALL)
   Future<List<Inscription>> getInscriptions() async {

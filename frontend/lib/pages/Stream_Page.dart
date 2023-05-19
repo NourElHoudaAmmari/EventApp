@@ -5,6 +5,7 @@ import '../constant.dart';
 
 
 void _launchURL() async =>
+
     // ignore: deprecated_member_use
     await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
 const _url = 'https://meet.google.com/';

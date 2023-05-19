@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/constant.dart';
 import 'package:frontend/models/Events.dart';
 import 'package:frontend/pages/inscription_screen.dart';
 import 'package:frontend/services/api_service.dart';
@@ -25,7 +26,7 @@ bool _isLiked = false;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: orangeColor,
+        backgroundColor:kPrimaryColor,
         title: const Text(' Event Details'),
       ),
       body: SingleChildScrollView(
@@ -41,7 +42,7 @@ bool _isLiked = false;
                   decoration: BoxDecoration(border: Border.all(color: Colors.white)),
                    padding: const EdgeInsets.all(5.0),
                   child: Image(
-        image: NetworkImage('assets/img_event_1.png'),
+        image: AssetImage('assets/img_event_1.png'),
         fit: BoxFit.cover,
        
       ),
@@ -70,6 +71,10 @@ bool _isLiked = false;
       icon: Icon(_isLiked? Icons.favorite : Icons.favorite_border),
       color: _isLiked ? Colors.red : Colors.black,
       onPressed: () {
+            
+        setState(() {
+          _isLiked = !_isLiked;
+        });
       },
       
     ),
@@ -207,29 +212,34 @@ bool _isLiked = false;
   ],
                          ),
                                        SizedBox(height: 12,),
-                  Container(
-  decoration: BoxDecoration(
-    border: Border.all(color: Colors.white),
-    borderRadius: BorderRadius.circular(8),
+                 
+       Center(
+  child: Container(
+    alignment: Alignment.bottomCenter,
+    child: Row(
+      children: <Widget>[
+        SizedBox(width: 5),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Color.fromARGB(255, 4, 41, 72),
+            textStyle: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => InscriptionEvent()),
+            );
+          },
+          child: Text("Register"),
+        ),
+      ],
+    ),
   ),
-  child: Row(
-    children: <Widget>[
-      SizedBox(width: 5),
-      
-      ElevatedButton(onPressed: (){
-
-      Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) =>InscriptionEvent() ),
-    );
-      },
-       child: Text(" Register"),
-       ),
-    ],
-  ),
-                  ),
+),
                     
-                          
                     
 
                     /*  IntrinsicWidth(

@@ -1,8 +1,12 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/constant.dart';
 import 'package:frontend/models/Events.dart';
+import 'package:frontend/pages/affich_page.dart';
 import 'package:frontend/services/api_service.dart';
+import 'package:frontend/widgets/EventsList.dart';
 
 import 'package:frontend/widgets/Events_edit_delete.dart';
 import 'package:frontend/widgets/adddatawidget.dart';
@@ -19,6 +23,12 @@ class MainDrawer extends StatefulWidget {
 }
 
 class _MainDrawerState extends State<MainDrawer> {
+  String? getCurrentUserEmail() {
+  User? user = FirebaseAuth.instance.currentUser;
+  String? email = user!.email;
+  return email;
+}
+     late final List<Events> events;
   
    @override
    void initState() {
@@ -27,13 +37,14 @@ class _MainDrawerState extends State<MainDrawer> {
   }
   @override
   Widget build(BuildContext context) {
+      String? email = getCurrentUserEmail();
    return Drawer(
       child: Column(
         children:<Widget> [
 Container(
   width: double.infinity,
   padding: EdgeInsets.all(20),
-  color: Colors.blue[700],
+  color: kPrimaryColor,
   child: Center(
     child: Column(
       children: <Widget> [
@@ -52,14 +63,13 @@ Container(
           ),
         ),
         Text(  
- "Mohamed ",
+"",
    style: TextStyle(
    fontSize: 22,
   color: Colors.white,
  fontWeight: FontWeight.bold,),
     ),
- Text(  
- "Mohamed@gmail.com",
+ Text(' $email',
    style: TextStyle(
     color: Colors.white,
    fontWeight: FontWeight.normal,),
@@ -107,7 +117,7 @@ ListTile(
     print("entred");
      Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const EventEditDelete(events: [],) ),
+              MaterialPageRoute(builder: (context) =>Affich()),
             );
   },
 ),

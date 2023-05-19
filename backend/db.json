@@ -1,15 +1,67 @@
 {
   "events": [
+    
     {
-      "name": "flutter event",
+      "name": "android ",
       "location": "Tunis",
-      "imageUrl": "",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpZBiBGMSz9n9oQYMTjbmjBIzBw5mbWAuW20iX9tme3KCiR-Hh6mCdDkb7SxGMOIgp1So&usqp=CAU",
+      "date": "27-05-2023",
+      "duree": "3",
+      "description": "android Workshop",
+      "nbplace": "9",
+      "updated": "2023-05-03 20:37:20.432637",
+      "id": "7zMr7ig"
+    },
+    {
+      "name": "Flutter",
+      "location": "tunis",
+      "imageUrl": "https://developers.google.com/static/events/flutter-live/images/summit-2.jpg",
+      "date": "29-05-2023",
+      "duree": "2",
+      "description": "Flutter event",
+      "nbplace": "6",
+      "updated": "2023-05-04 15:33:13.641753",
+      "id": "2DoiN1r"
+    },
+    {
+      "name": "workshop Spring boot",
+      "location": "ISET Zaghouan",
+      "imageUrl": "https://cdn.sayonetech.com/media/zinnia/Spring_Boot_Event-Driven_copy.jpg",
       "date": "31-05-2023",
       "duree": "2",
-      "description": "flutter event",
-      "nbplace": "60",
-      "updated": "2023-05-03 18:48:57.461011",
-      "id": "KJ0173l"
+      "description": "workshop springboot niveau débutant ",
+      "nbplace": "3",
+      "updated": "2023-05-11 21:05:32.351875",
+      "id": "bkW9j2t"
+    }
+  ],
+  "inscriptions": [
+    {
+      "nom": "ammari",
+      "prenom": "nour",
+      "numtel": 29161916,
+      " mail": "nourammari15@gmail.com",
+      "adresse": "tunis",
+      "updated": null,
+      "id": "1"
+    },
+    {
+      "nom": "jb",
+      "prenom": "maiss",
+      "numtel": 12345678,
+      " mail": "maissa@gmail.com",
+      "adresse": "fouchena",
+      "updated": null,
+      "id": "nFjg6SO"
+    },
+    {
+      "nom": "ammari",
+      "prenom": "asma",
+      "numtel": 23519951,
+      " mail": "asma@gmail.com",
+      "adresse": "tunis",
+      "updated": null,
+      "id": "VxAFdLR"
     }
   ]
 }

@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 
 //ALL THE CRUD METHODS WILL BE FOUND HERE
 class ApiService {
-  final Uri apiUrl = Uri.parse("http://192.168.1.215:3000/events");
+  final Uri apiUrl = Uri.parse("http://192.168.1.9:3000/events");
 
   //GET METHOD (ALL)
   Future<List<Events>> getEvents() async {

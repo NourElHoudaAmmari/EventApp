@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:frontend/constant.dart';
 import 'package:frontend/models/inscription.dart';
 import 'package:frontend/services/inscription_service.dart';
 import 'package:frontend/shared/theme.dart';
@@ -36,7 +37,7 @@ class _InscriptionListState extends State<InscriptionList> {
    return Scaffold(
     key: _key,
       appBar: AppBar(
-      backgroundColor: orangeColor,
+      backgroundColor: kPrimaryColor,
         title: const Text("Inscription List"),
       ),
       body: Center(

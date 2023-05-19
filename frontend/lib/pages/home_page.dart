@@ -1,6 +1,8 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/constant.dart';
 import 'package:frontend/widgets/EventsList.dart';
 import 'package:frontend/models/Events.dart';
 import 'package:frontend/pages/mainDrawer.dart';
@@ -17,6 +19,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String getCurrentUserName() {
+  User? user = FirebaseAuth.instance.currentUser;
+  String? userName = user?.displayName;
+  return userName??'';
+}
     final ApiService api = ApiService();
    
    late Future<List<Events>> eventList;
@@ -33,10 +40,10 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
-   
+       String userName = getCurrentUserName();
     return Scaffold(
       key: _key,
-        backgroundColor: backgroundColor,
+        backgroundColor: Colors.white,
       drawer:const MainDrawer(),
       appBar: AppBar(
          
@@ -47,7 +54,7 @@ class _HomePageState extends State<HomePage> {
        ),
         elevation: 0.0,
 
- backgroundColor: orangeColor,
+ backgroundColor: kPrimaryColor,
         leading: IconButton(
           icon:const Icon(
             Icons.menu,
@@ -82,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hello Mohamed',
+               'Welcome ',
                       style: primaryTextStyle.copyWith(
                       fontSize: 20,
                       fontWeight: semiBold,
@@ -106,7 +113,7 @@ class _HomePageState extends State<HomePage> {
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage('assets/img_profile.png'),
+                  image: AssetImage('assets/profile_pic.png'),
                 ),
               ),
             ),
